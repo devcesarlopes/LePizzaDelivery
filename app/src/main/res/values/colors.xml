@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="yellow_background">#FBD603</color>
+    <color name="yellow_background_95">#F2FBD603</color>
+    <color name="bold_yellow_background">#D7B807</color>
+    <color name="yellow_star">#FBD603</color>
+    <color name="gray_background">#979CA0</color>
+    <color name="checked_green">#289e5a</color>
+    <color name="gray_text">#737373</color>
+    <color name="shadow_gray">#A9A9A9</color>
+    <color name="gray_list">#101616</color>
+    <color name="red">#bf3d27</color>
+    <color name="soft_orange">#ffac0e</color>
+    <color name="soft_green">#2ecc71</color>
+    <color name="colorPrimary">#FF6200EE</color>
+    <color name="colorPrimaryDark">#FF3700B3</color>
+    <color name="greenButton">#06bd59</color>
+    <color name="blueButton">#06276a</color>
+    <color name="colorAccent">#FF03DAC5</color>
+    <color name="yellow">#ffd42a</color>
+    <color name="light_gray">#cbcbcb</color>
+    <color name="calendar_selected_day_bg">#289e5a</color>
+    <color name="calendar_selected_range_bg">#8BC34A</color>
+    <color name="transparent">#00000000</color>
+    <color name="gray_form">#858585</color>
+</resources>
