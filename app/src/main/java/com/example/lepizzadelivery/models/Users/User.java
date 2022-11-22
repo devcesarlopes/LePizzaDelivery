@@ -21,7 +21,6 @@ public abstract class User implements Serializable {
     String phone;
     String password;
     String type;
-    Address address;
 
     public User(){}
 
@@ -57,32 +56,22 @@ public abstract class User implements Serializable {
         DataSnapshot snapshot = dataSnapshot.child("users").child(type).child(uid);
         String email = snapshot.child("email").getValue(String.class);
         String name = snapshot.child("name").getValue(String.class);
-
         if(type.equals(UserTypes.CLIENT.toString())){
+            System.out.println(type);
             String phone = snapshot.child("phone").getValue(String.class);
             Address address = new Address(snapshot.child("address").getValue(String.class), snapshot.child("lat").getValue(Double.class), snapshot.child("lng").getValue(Double.class));
-            return new Client(name, email, phone, address);
+            return new Client(uid, name, email, phone, address);
         }else if(type.equals(UserTypes.WORKER.toString())){
+            System.out.println(type);
             String restaurantUid = snapshot.child("restaurant").getValue(String.class);
             assert restaurantUid != null;
             Restaurant restaurant = new Restaurant(dataSnapshot.child("restaurants").child(restaurantUid));
-            return new Worker(name, email, restaurant);
+            return new Worker(uid, name, email, restaurant);
         }else if(type.equals(UserTypes.ADMIN.toString())){
-            return new Admin(name, email);
+            System.out.println(type);
+            return new Admin(uid, name, email);
         }
         return null;
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "uid='" + uid + '\n' +
-                ", name='" + name + '\n' +
-                ", email='" + email + '\n' +
-                ", phone='" + phone + '\n' +
-                ", type='" + type + '\n' +
-                ", address=" + address + '\n' +
-                '}';
     }
 }
 

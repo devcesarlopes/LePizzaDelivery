@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/julio/AndroidStudioProjects/LePizzaDelivery/app/src/main/res/drawable/shape_top_bottom_lined.xml" value="0.3" />
         <entry key="..\:/Users/julio/AndroidStudioProjects/LePizzaDelivery/app/src/main/res/drawable/yellow_gradient.xml" value="0.3828125" />
         <entry key="..\:/Users/julio/AndroidStudioProjects/LePizzaDelivery/app/src/main/res/drawable/yellow_top_nav.xml" value="0.2203125" />
         <entry key="..\:/Users/julio/AndroidStudioProjects/LePizzaDelivery/app/src/main/res/layout/activity_choose_role.xml" value="0.264" />
@@ -22,27 +23,36 @@
         <entry key="..\:/Users/julio/AndroidStudioProjects/LePizzaDelivery/app/src/main/res/layout/bottom_menu.xml" value="0.15572916666666667" />
         <entry key="..\:/Users/julio/AndroidStudioProjects/LePizzaDelivery/app/src/main/res/layout/client_bottom_menu.xml" value="0.4" />
         <entry key="..\:/Users/julio/AndroidStudioProjects/LePizzaDelivery/app/src/main/res/layout/client_cart.xml" value="0.22083333333333333" />
-        <entry key="..\:/Users/julio/AndroidStudioProjects/LePizzaDelivery/app/src/main/res/layout/client_home.xml" value="0.536" />
+        <entry key="..\:/Users/julio/AndroidStudioProjects/LePizzaDelivery/app/src/main/res/layout/client_home.xml" value="0.264" />
         <entry key="..\:/Users/julio/AndroidStudioProjects/LePizzaDelivery/app/src/main/res/layout/client_orders.xml" value="0.22083333333333333" />
-        <entry key="..\:/Users/julio/AndroidStudioProjects/LePizzaDelivery/app/src/main/res/layout/client_orders_fragment.xml" value="0.22083333333333333" />
+        <entry key="..\:/Users/julio/AndroidStudioProjects/LePizzaDelivery/app/src/main/res/layout/client_orders_fragment.xml" value="0.2" />
         <entry key="..\:/Users/julio/AndroidStudioProjects/LePizzaDelivery/app/src/main/res/layout/client_profile_fragment.xml" value="0.22083333333333333" />
-        <entry key="..\:/Users/julio/AndroidStudioProjects/LePizzaDelivery/app/src/main/res/layout/client_restaurant_menu_fragment.xml" value="0.44247104247104246" />
-        <entry key="..\:/Users/julio/AndroidStudioProjects/LePizzaDelivery/app/src/main/res/layout/client_search_fragment.xml" value="0.4" />
+        <entry key="..\:/Users/julio/AndroidStudioProjects/LePizzaDelivery/app/src/main/res/layout/client_restaurant_menu_fragment.xml" value="0.39112050739957716" />
+        <entry key="..\:/Users/julio/AndroidStudioProjects/LePizzaDelivery/app/src/main/res/layout/client_search_fragment.xml" value="0.176" />
         <entry key="..\:/Users/julio/AndroidStudioProjects/LePizzaDelivery/app/src/main/res/layout/custom_admin_restaurant.xml" value="0.536" />
+        <entry key="..\:/Users/julio/AndroidStudioProjects/LePizzaDelivery/app/src/main/res/layout/custom_client_orders.xml" value="0.4" />
+        <entry key="..\:/Users/julio/AndroidStudioProjects/LePizzaDelivery/app/src/main/res/layout/custom_client_orders_item.xml" value="0.21614583333333334" />
         <entry key="..\:/Users/julio/AndroidStudioProjects/LePizzaDelivery/app/src/main/res/layout/custom_client_restaurant.xml" value="0.24947916666666667" />
         <entry key="..\:/Users/julio/AndroidStudioProjects/LePizzaDelivery/app/src/main/res/layout/custom_coupon.xml" value="0.536" />
         <entry key="..\:/Users/julio/AndroidStudioProjects/LePizzaDelivery/app/src/main/res/layout/custom_menu_items.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/julio/AndroidStudioProjects/LePizzaDelivery/app/src/main/res/layout/custom_multiple_selection_item.xml" value="0.72" />
         <entry key="..\:/Users/julio/AndroidStudioProjects/LePizzaDelivery/app/src/main/res/layout/custom_restaurant.xml" value="0.1984375" />
         <entry key="..\:/Users/julio/AndroidStudioProjects/LePizzaDelivery/app/src/main/res/layout/custom_select_restaurant.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/julio/AndroidStudioProjects/LePizzaDelivery/app/src/main/res/layout/custom_worker_orders.xml" value="0.264" />
         <entry key="..\:/Users/julio/AndroidStudioProjects/LePizzaDelivery/app/src/main/res/layout/layout_restaurante.xml" value="0.6" />
         <entry key="..\:/Users/julio/AndroidStudioProjects/LePizzaDelivery/app/src/main/res/layout/list_selector_multiple_choice.xml" value="0.24947916666666667" />
         <entry key="..\:/Users/julio/AndroidStudioProjects/LePizzaDelivery/app/src/main/res/layout/login.xml" value="0.264" />
+        <entry key="..\:/Users/julio/AndroidStudioProjects/LePizzaDelivery/app/src/main/res/layout/menu_horizontal_scrolling_item.xml" value="0.536" />
+        <entry key="..\:/Users/julio/AndroidStudioProjects/LePizzaDelivery/app/src/main/res/layout/menu_item.xml" value="0.264" />
+        <entry key="..\:/Users/julio/AndroidStudioProjects/LePizzaDelivery/app/src/main/res/layout/menu_section.xml" value="0.4" />
+        <entry key="..\:/Users/julio/AndroidStudioProjects/LePizzaDelivery/app/src/main/res/layout/menu_section_title.xml" value="0.21614583333333334" />
         <entry key="..\:/Users/julio/AndroidStudioProjects/LePizzaDelivery/app/src/main/res/layout/register.xml" value="0.14990942028985507" />
         <entry key="..\:/Users/julio/AndroidStudioProjects/LePizzaDelivery/app/src/main/res/layout/restaurant_home.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/julio/AndroidStudioProjects/LePizzaDelivery/app/src/main/res/layout/select_menu_items.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/julio/AndroidStudioProjects/LePizzaDelivery/app/src/main/res/layout/select_restaurant.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/julio/AndroidStudioProjects/LePizzaDelivery/app/src/main/res/layout/shape_top_bottom_lined.xml" value="0.2838541666666667" />
         <entry key="..\:/Users/julio/AndroidStudioProjects/LePizzaDelivery/app/src/main/res/layout/splash_screen.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/julio/AndroidStudioProjects/LePizzaDelivery/app/src/main/res/layout/worker_home.xml" value="0.3020833333333333" />
       </map>
     </option>
   </component>

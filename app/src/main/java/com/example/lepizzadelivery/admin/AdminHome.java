@@ -94,7 +94,7 @@ public class AdminHome extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if(!getSupportFragmentManager().getFragments().get(0).getClass().getSimpleName().equals("ClientSearchFragment")) openBusinessFragment();
+        if(!getSupportFragmentManager().getFragments().get(0).getClass().getSimpleName().equals("AdminBusinessFragment")) openBusinessFragment();
         else super.onBackPressed();
     }
 }

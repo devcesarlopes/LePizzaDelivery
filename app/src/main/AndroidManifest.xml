@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LePizzaDelivery">
         <activity
+            android:name=".worker.WorkerDispatchOrder"
+            android:exported="true" />
+        <activity
+            android:name=".worker.WorkerHome"
+            android:exported="true" />
+        <activity
             android:name=".ListSelectors.SelectMenuItems"
             android:exported="true" />
         <activity

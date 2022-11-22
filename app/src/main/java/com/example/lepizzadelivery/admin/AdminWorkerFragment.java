@@ -103,10 +103,10 @@ public class AdminWorkerFragment extends Fragment {
         if(restaurantObject == null) throw new Exception("É necessário selecionar um Restaurante");
 
         return new Worker(
+            restaurantObject,
             name.getText().toString().trim(),
             email.getText().toString().trim(),
-            password.getText().toString().trim(),
-            restaurantObject
+            password.getText().toString().trim()
         );
     }
 

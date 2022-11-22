@@ -43,14 +43,13 @@ public class Restaurant implements Serializable {
     String uid;
     Address address;
     String district;
-    List<String> foodTypes;
+    public List<String> foodTypes;
     transient Double distance;
     transient int minTime;
     transient int maxTime;
     double rating;
     int ratingVotes;
     Coupon coupon;
-    Menu menu;
     int deliveries;
     double income;
 
@@ -85,13 +84,17 @@ public class Restaurant implements Serializable {
     public void generateView(Activity activity, LinearLayout lista, User user){
         this.lista = lista;
         this.activity = activity;
+        System.out.println("generateView");
+        System.out.println(user instanceof Client);
         if(user instanceof Client) {
+            System.out.println("user instanceof Client");
             Client client = (Client) user;
             Double distance = client.getAddress().getDistance(this.address);
-            this.distance = Double.parseDouble(Address.format(distance, 1));
-            this.minTime = Integer.parseInt(String.valueOf(distance*5));
-            this.maxTime = Integer.parseInt(String.valueOf(distance*10));
+            this.distance = (double) Math.round(distance * 10) / 10;
+            this.minTime = Double.valueOf(distance*5).intValue();
+            this.maxTime = Double.valueOf(distance*10).intValue();
             generateClientRestaurantView();
+            System.out.println("user instanceof Client generateClientRestaurantView");
             generateClientCouponView();
         } else if(user instanceof Admin){
             generateAdminRestaurantView();
@@ -114,12 +117,13 @@ public class Restaurant implements Serializable {
         vDistance.setText(getDistance());
         vMinTime.setText(getMinTime());
         vMaxTime.setText(getMaxTime());
-        vrating.setText(getrating());
+        vrating.setText(getRating());
         v.setTag(this);
         constraintLayout.setOnTouchListener(TouchListener.getTouch("#FFFFFF"));
         constraintLayout.setOnClickListener(view -> {
             ((ClientHome)activity).openRestaurantFragment(this);
         });
+        System.out.println("generateClientRestaurantView");
         this.restaurantView = v;
     }
 
@@ -165,7 +169,7 @@ public class Restaurant implements Serializable {
         vFoodType.setText(getFoodTypes());
         vDeliveries.setText(getDeliveries());
         vIncome.setText(getIncome());
-        vrating.setText(getrating());
+        vrating.setText(getRating());
         v.setTag(this);
         constraintLayout.setOnTouchListener(TouchListener.getTouch("#FFFFFF"));
         constraintLayout.setOnClickListener(view -> {
@@ -201,17 +205,21 @@ public class Restaurant implements Serializable {
         this.couponView = v;
     }
 
+    public Double calculateDeliveryPrice(Client user){
+        return user.getAddress().getDistance(address) * 1.2;
+    }
+
     public String getUid() {return uid;}
     public String getDistrict() {return district;}
     public String getFoodTypes() {return String.join(", ", foodTypes);}
     public String getDistance() {return String.valueOf(distance);}
     public String getMinTime() {return String.valueOf(minTime);}
     public String getMaxTime() {return String.valueOf(maxTime);}
-    public String getrating() {return new DecimalFormat("##.0").format(rating);}
+    public String getRating() {return new DecimalFormat("##.0").format(rating);}
     public double getratingNum() {return rating;}
     public Coupon getCoupon() {return coupon;}
-    public double getRating() {return rating;}
     public int getRatingVotes() {return ratingVotes;}
+    public Address getAddress() {return address;}
     public String getDeliveries() {return String.valueOf(deliveries);}
     public String getIncome() {return new DecimalFormat("#.##").format(income);}
     public View getRestaurantView() {return restaurantView;}

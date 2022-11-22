@@ -13,6 +13,8 @@ import com.example.lepizzadelivery.session.SharedPrefsDatabase;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.util.Objects;
+
 @SuppressLint("CustomSplashScreen")
 public class SplashScreen extends AppCompatActivity {
 
@@ -39,7 +41,10 @@ public class SplashScreen extends AppCompatActivity {
 
         Handler handler = new Handler();
         handler.postDelayed(() -> {
-            if(SharedPrefsDatabase.getUser(this).getType().equals(User.UserTypes.CLIENT.toString())) Router.goToClientHomePage(this);
+            String type = Objects.requireNonNull(SharedPrefsDatabase.getUser(this)).getType();
+            if(type.equals(User.UserTypes.CLIENT.toString())) Router.goToClientHomePage(this);
+            if(type.equals(User.UserTypes.ADMIN.toString())) Router.goToAdminHomePage(this);
+            if(type.equals(User.UserTypes.WORKER.toString())) Router.goToWorkerHomePage(this);
         }, 1000);
     }
 }

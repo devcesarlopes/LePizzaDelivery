@@ -7,6 +7,7 @@ import com.example.lepizzadelivery.ListSelectors.SelectMenuItems;
 import com.example.lepizzadelivery.ListSelectors.SelectRestaurant;
 import com.example.lepizzadelivery.admin.AdminHome;
 import com.example.lepizzadelivery.client.ClientHome;
+import com.example.lepizzadelivery.worker.WorkerHome;
 
 public class Router {
 
@@ -17,6 +18,11 @@ public class Router {
 
     public static void goToAdminHomePage(Activity activity){
         activity.startActivity(new Intent(activity, AdminHome.class));
+        activity.finish();
+    }
+
+    public static void goToWorkerHomePage(Activity activity){
+        activity.startActivity(new Intent(activity, WorkerHome.class));
         activity.finish();
     }
 

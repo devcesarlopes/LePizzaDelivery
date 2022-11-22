@@ -8,9 +8,9 @@ import java.util.Objects;
 
 public class Address implements Serializable {
 
-    String name;
-    Double lat;
-    Double lng;
+    private String name;
+    private Double lat;
+    private Double lng;
 
     public Address(Place place) {
         this.name = place.getName();

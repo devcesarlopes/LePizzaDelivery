@@ -18,10 +18,15 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.lepizzadelivery.Api;
 import com.example.lepizzadelivery.DoubleClick;
 import com.example.lepizzadelivery.R;
+import com.example.lepizzadelivery.Router;
 import com.example.lepizzadelivery.models.Order;
 import com.example.lepizzadelivery.models.Restaurant;
+import com.example.lepizzadelivery.models.Users.User;
+import com.example.lepizzadelivery.session.SharedPrefsDatabase;
+import com.google.firebase.auth.FirebaseAuth;
 import com.journeyapps.barcodescanner.ScanContract;
 import com.journeyapps.barcodescanner.ScanOptions;
 
@@ -31,29 +36,30 @@ import java.util.stream.Collectors;
 
 public class ClientSearchFragment extends Fragment {
 
+    User user;
     Order order;
     List<Restaurant> listaRestaurantes = new ArrayList<>();
     LinearLayout list;
+    ImageView logout;
 
     ConstraintLayout restaurant, coupon, qrCode;
     ImageView restaurantIcon, couponIcon, qrCodeIcon;
     TextView restaurantText, couponText, qrCodeText;
 
     DoubleClick doubleClick = new DoubleClick();
+    Api Api = new Api();
 
     public ClientSearchFragment() {}
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Bundle data = getArguments();
-        if(data != null) order = (Order) data.getSerializable("order");
-        System.out.println(order);
     }
 
     @SuppressLint("ClickableViewAccessibility")
     private void setViews(){
         //Top Menu Views
+        logout = requireView().findViewById(R.id.logout);
         restaurant = requireView().findViewById(R.id.restaurant);
         coupon = requireView().findViewById(R.id.coupon);
         qrCode = requireView().findViewById(R.id.qrCode);
@@ -72,6 +78,11 @@ public class ClientSearchFragment extends Fragment {
         restaurant.setOnClickListener(view -> { selectTopMenu(restaurantIcon, restaurantText); openRestaurantList(); });
         coupon.setOnClickListener(view -> { selectTopMenu(couponIcon, couponText); openCouponList(); });
         qrCode.setOnClickListener(view -> { if(doubleClick.detected()) return; readQrCode(); });
+        logout.setOnClickListener(view -> {
+            if(doubleClick.detected()) return;
+            FirebaseAuth.getInstance().signOut();
+            Router.goToLogin(requireActivity());
+        });
     }
 
     @Override
@@ -82,56 +93,35 @@ public class ClientSearchFragment extends Fragment {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
         setViews();
         setOnClickListeners();
+        user = SharedPrefsDatabase.getUser(requireActivity());
 
-//        listaRestaurantes.add(new Restaurant(getActivity(), list, "Pituba", Arrays.asList("Lanches".split(",")), 2.0F, 10, 20, 4.0F, new CouponFreeDelivery("1", new Date())));
-//        listaRestaurantes.add(new Restaurant(getActivity(), list, "Calabar", Arrays.asList("Lanches,Sobremesas".split(",")), 2.3F, 12, 24, 4.3F, null));
-//        listaRestaurantes.add(new Restaurant(getActivity(), list, "Paralela", Arrays.asList("Lanches,Pizza".split(",")), 4.5F, 25, 45, 4.5F, new CouponTakeTwo("1", new Date(), new Drinks("coca"))));
-//        listaRestaurantes.add(new Restaurant(getActivity(), list, "Rio Vermelho", Arrays.asList("Lanches,Hambúrguer".split(",")), 1.6F, 8, 16, 4.6F, null));
-//        listaRestaurantes.add(new Restaurant(getActivity(), list, "Marechal Rondom", Arrays.asList("Lanches".split(",")), 2.0F, 10, 20, 4.0F, new CouponFreeFood("1", new Date(), new Drinks("sprite"))));
-//        listaRestaurantes.add(new Restaurant(getActivity(), list, "Sussuarana", Arrays.asList("Lanches,Sobremesas".split(",")), 2.3F, 12, 24, 4.3F, null));
-//        listaRestaurantes.add(new Restaurant(getActivity(), list, "Federação", Arrays.asList("Lanches,Pizza".split(",")), 4.5F, 25, 45, 4.5F, null));
-//        listaRestaurantes.add(new Restaurant(getActivity(), list, "Cajazeiras", Arrays.asList("Lanches,Hambúrguer".split(",")),1.6F, 8, 16, 4.6F, new CouponPercentage("1", new Date(), 20)));
-//        listaRestaurantes.add(new Restaurant(getActivity(), list, "Cajazeiras", Arrays.asList("Lanches,Hambúrguer".split(",")),1.6F, 8, 16, 4.6F, new CouponPercentage("1", new Date(), 20)));
+        Api.getRestaurants()
+        .then((action, data) -> {
+            List<Restaurant> restaurants = (ArrayList<Restaurant>) data;
+            listaRestaurantes.clear();
+            listaRestaurantes.addAll(restaurants);
+            System.out.println(listaRestaurantes);
+            openRestaurantList();
+        }).start();
 
         selectTopMenu(restaurantIcon, restaurantText);
-//        if(list.getChildCount() == 0) openRestaurantList();
-        openRestaurantList();
     }
 
     private void openRestaurantList(){
 
         list.removeAllViews();
-        for(Restaurant restaurant : listaRestaurantes) if(restaurant.getRestaurantView().getParent() == null) list.addView(restaurant.getRestaurantView());
-
-
-//        ScrollView scroll = requireView().findViewById(R.id.scroll);
-//        scroll.post(() -> scroll.smoothScrollTo(0, 300));
-//
-//        scroll.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-//            @Override
-//            public void onGlobalLayout() {
-//                scroll.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-//                int height = scroll.getHeight();
-////                System.out.println(height);
-//                int h = 0;
-//                System.out.println(height);
-//                for(Restaurant restaurant : listaRestaurantes) {
-//                    h += restaurant.getRestaurantView().getHeight();
-//                    restaurant.setHeight((h - height < 0) ? 0 : h);
-//                    System.out.println(restaurant.getHeight());
-//                }
-//
-//                System.out.println();
-//
-//                ScrollView scroll = requireView().findViewById(R.id.scroll);
-//                scroll.post(() -> scroll.smoothScrollTo(0, listaRestaurantes.get(5).getHeight()));
-//            }
-//        });
+        for(Restaurant restaurant : listaRestaurantes) {
+            System.out.println(user);
+            restaurant.generateView(getActivity(), list, user);
+            System.out.println("restaurant.getRestaurantView() " + restaurant.getRestaurantView());
+            list.addView(restaurant.getRestaurantView());
+        }
     }
 
     private void openCouponList(){
@@ -170,8 +160,7 @@ public class ClientSearchFragment extends Fragment {
         text.setTextColor(getResources().getColor(R.color.black));
     }
 
-
-    public final ActivityResultLauncher<ScanOptions> barcodeLauncher = registerForActivityResult(new ScanContract(),
+    public ActivityResultLauncher<ScanOptions> barcodeLauncher = registerForActivityResult(new ScanContract(),
     result -> {
         if(result.getContents() == null) {
             Toast.makeText(getActivity(), "Cancelled", Toast.LENGTH_LONG).show();

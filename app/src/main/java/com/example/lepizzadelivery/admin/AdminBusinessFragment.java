@@ -117,7 +117,6 @@ public class AdminBusinessFragment extends Fragment {
 //        if(restaurant.getRestaurantView().getParent() == null)
         list.removeAllViews();
         for(Restaurant restaurant : listaRestaurantes) {
-            System.out.println("openRestaurantList");
             restaurant.generateView(getActivity(), list, user);
             list.addView(restaurant.getRestaurantView());
         }

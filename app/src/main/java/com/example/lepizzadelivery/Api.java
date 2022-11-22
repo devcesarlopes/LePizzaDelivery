@@ -1,12 +1,14 @@
 package com.example.lepizzadelivery;
 
 import android.app.Activity;
+import android.content.Context;
 import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import com.example.lepizzadelivery.models.Order;
 import com.example.lepizzadelivery.models.Restaurant;
 import com.example.lepizzadelivery.models.Users.Admin;
 import com.example.lepizzadelivery.models.Users.Client;
@@ -25,7 +27,10 @@ import com.google.firebase.database.ValueEventListener;
 import org.riversun.promise.Promise;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
 
 public class Api {
@@ -60,7 +65,7 @@ public class Api {
             reference = FirebaseDatabase.getInstance().getReference().child("users").child(User.UserTypes.CLIENT.toString()).child(user.getUid());
             reference.updateChildren(user.getMap())
                 .addOnSuccessListener(unused -> {
-                    SharedPrefsDatabase.SaveUserOnSharedPreferences(activity, user);
+                    SharedPrefsDatabase.SaveUserOnSharedPreferences(activity, user, Context.MODE_PRIVATE);
                     SessionManagement session = new SessionManagement(activity);
                     session.saveSession(user);
                     Router.goToClientHomePage(activity);
@@ -105,18 +110,20 @@ public class Api {
     }
 
     public void login(Activity activity, String email, String password, ConstraintLayout loadinPage){
-        loadinPage.setVisibility(View.GONE);
+        loadinPage.setVisibility(View.VISIBLE);
         Promise.resolve()
         .then(new Promise((action, data) -> mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
+            System.out.println("Promise1");
             if (task.isSuccessful()) {
                 action.resolve(FirebaseAuth.getInstance().getUid());
             } else {
                 Toast.makeText(activity, "O Email ou a Senha Estão incorretos.", Toast.LENGTH_SHORT).show();
-                loadinPage.setVisibility(View.VISIBLE);
+                loadinPage.setVisibility(View.GONE);
                 action.reject();
             }
         })))
         .then(new Promise((action, data) -> {
+            System.out.println("Promise2");
             String uid = (String) data;
             reference = FirebaseDatabase.getInstance().getReference();
             reference.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -127,26 +134,36 @@ public class Api {
                             action.resolve(User.setValuesFromFirebase(uid, userType.getKey(), snapshot));
                             return;
                         }
-                    loadinPage.setVisibility(View.VISIBLE);
+                    System.out.println("PROMISE2 REJECT");
+                    loadinPage.setVisibility(View.GONE);
                     Toast.makeText(activity, "Usuário não encontrado no banco de dados. Contate o Suporte!", Toast.LENGTH_SHORT).show();
                     action.reject();
                 }
 
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {
-                    loadinPage.setVisibility(View.VISIBLE);
+                    loadinPage.setVisibility(View.GONE);
                     Toast.makeText(activity, "Falha ao identificar o Usuário no banco de dados.", Toast.LENGTH_SHORT).show();
                     action.reject();
                 }
             });
         }))
         .then(new Promise((action, data) -> {
+            System.out.println("PROMISE3");
             User user = (User) data;
-            SharedPrefsDatabase.SaveUserOnSharedPreferences(activity, user);
+            System.out.println(user);
+            SharedPrefsDatabase.SaveUserOnSharedPreferences(activity, user, Context.MODE_PRIVATE);
+            System.out.println("SharedPrefsDatabase");
+
             SessionManagement session = new SessionManagement(activity);
+            System.out.println("SessionManagement");
+
             session.saveSession(user);
+            System.out.println("saveSession");
+            System.out.println(user);
             if(user instanceof Client) Router.goToClientHomePage(activity);
             if(user instanceof Admin) Router.goToAdminHomePage(activity);
+            if(user instanceof Worker) Router.goToWorkerHomePage(activity);
         })).start();
     }
 
@@ -188,5 +205,135 @@ public class Api {
                 action.reject();
             });
         }));
+    }
+
+    public Promise registerOrder(Activity activity, Order order, ConstraintLayout loadingPage){
+        loadingPage.setVisibility(View.VISIBLE);
+        System.out.println("registerOrder");
+        return Promise.resolve()
+        .then(new Promise((action, data) -> {
+            System.out.println("Promise");
+            reference = FirebaseDatabase
+                    .getInstance()
+                    .getReference()
+                    .child("users")
+                    .child(User.UserTypes.CLIENT.name())
+                    .child(order.getUser().getUid())
+                    .child("orders")
+                    .child(order.getUid());
+            reference.updateChildren(order.getUserMap())
+            .addOnSuccessListener(unused -> {
+                System.out.println("success");
+                action.resolve();
+            })
+            .addOnFailureListener(e -> {
+                loadingPage.setVisibility(View.GONE);
+                Toast.makeText(activity, "Falha ao registrar o Pedido no banco de dados.", Toast.LENGTH_SHORT).show();
+                action.reject();
+            });
+        }))
+        .then(new Promise((action, data) -> {
+            reference = FirebaseDatabase
+                    .getInstance()
+                    .getReference()
+                    .child("restaurants")
+                    .child(order.getRestaurant().getUid())
+                    .child("orders")
+                    .child(order.getUid());
+            reference.updateChildren(order.getRestaurantMap())
+            .addOnSuccessListener(unused -> {
+                System.out.println("success");
+                action.resolve();
+            })
+            .addOnFailureListener(e -> {
+                loadingPage.setVisibility(View.GONE);
+                Toast.makeText(activity, "Falha ao registrar o Pedido no banco de dados.", Toast.LENGTH_SHORT).show();
+                action.reject();
+            });
+        }));
+    }
+
+    @SuppressWarnings("unchecked")
+    public Promise getAcceptedOrders(Client user){
+    return getRestaurants()
+        .then(new Promise((action, data) -> {
+            List<Restaurant> restaurants = (ArrayList<Restaurant>) data;
+            List<Order> orders = new ArrayList<>();
+            reference = FirebaseDatabase
+                    .getInstance()
+                    .getReference()
+                    .child("users")
+                    .child(User.UserTypes.CLIENT.name())
+                    .child(user.getUid());
+            reference.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot user) {
+                    if(!user.child("orders").exists()){
+                        action.resolve(orders);
+                        return;
+                    }
+                    for (DataSnapshot order : user.child("orders").getChildren()){
+                        if(Objects.equals(order.child("status").getValue(String.class), Order.OrderStatus.RESTAURANT_ACCEPTED.name())){
+                            Restaurant restaurant = restaurants.stream()
+                                    .filter(restaurant1 -> restaurant1.getUid().equals(order.child("restaurantUid").getValue(String.class)))
+                                    .findFirst()
+                                    .orElse(null);
+                            orders.add(new Order(restaurant, order));
+                        }
+                    }
+                    action.resolve(orders);
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                    action.resolve(orders);
+                }
+            });
+        }));
+    }
+
+    public void acceptOrder(Activity activity, Order order, Client user, String orderStatus){
+        String newOrderStatus = (orderStatus.equals(Order.OrderStatus.CLIENT_ORDERED.name())) ? Order.OrderStatus.RESTAURANT_ACCEPTED.name() : Order.OrderStatus.DELIVERED.name();
+        Promise.resolve()
+        .then(new Promise((action, data) -> {
+            reference = FirebaseDatabase
+                .getInstance()
+                .getReference()
+                .child("users")
+                .child(User.UserTypes.CLIENT.name())
+                .child(user.getUid())
+                .child("orders")
+                .child(order.getUid())
+                .child("status");
+            reference.setValue(newOrderStatus)
+                .addOnSuccessListener(unused -> {
+                    System.out.println("success1");
+                    action.resolve();
+                })
+                .addOnFailureListener(e -> {
+                    Toast.makeText(activity, "Falha ao registrar o Pedido no banco de dados.", Toast.LENGTH_SHORT).show();
+                    action.reject();
+                });
+        }))
+        .then(new Promise((action, data) -> {
+            reference = FirebaseDatabase
+                .getInstance()
+                .getReference()
+                .child("restaurants")
+                .child(order.getRestaurant().getUid())
+                .child("orders")
+                .child(order.getUid())
+                .child("status");
+            reference.setValue(newOrderStatus)
+                .addOnSuccessListener(unused -> {
+                    String text = (orderStatus.equals(Order.OrderStatus.CLIENT_ORDERED.name())) ? "Pedido Aceito com Sucesso!" : "Pedido Finalizado com sucesso!";
+                    Toast.makeText(activity, text, Toast.LENGTH_SHORT).show();
+                    action.resolve();
+                })
+                .addOnFailureListener(e -> {
+                    Toast.makeText(activity, "Falha ao registrar o Pedido no banco de dados.", Toast.LENGTH_SHORT).show();
+                    action.reject();
+                });
+        })).start();
     }
 }

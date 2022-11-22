@@ -17,7 +17,7 @@ public class CouponFreeFood extends Coupon{
 
     @Override
     public String getName() {
-        return food.getName() + " Grátis";
+        return  " Grátis";
     }
 
     @Override

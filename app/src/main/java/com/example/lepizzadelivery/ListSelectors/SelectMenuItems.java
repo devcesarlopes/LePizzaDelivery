@@ -28,9 +28,10 @@ public class SelectMenuItems extends AppCompatActivity {
     DoubleClick doubleClick = new DoubleClick();
     List<String> items = new ArrayList<String>(){{
         add("Lanches");
-        add("Sobremesas");
         add("Pizza");
         add("Hambúrguer");
+        add("Bebidas");
+        add("MilkShake");
     }};
     ArrayList<String> result = new ArrayList<>();
     CardView submitForm;

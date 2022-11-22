@@ -56,7 +56,7 @@
             </androidx.cardview.widget.CardView>
 
             <HorizontalScrollView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="10dp"
@@ -70,172 +70,10 @@
                 app:layout_constraintVertical_bias="0.194">
 
                 <LinearLayout
+                    android:id="@+id/menuFoodTypes"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginEnd="10dp"
-                        android:text="bEBIDAS"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginEnd="10dp"
-                        android:text="Comida"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginEnd="10dp"
-                        android:text="Ragas"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginEnd="10dp"
-                        android:text="Vinho"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginEnd="10dp"
-                        android:text="DElivery"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginEnd="10dp"
-                        android:text="Pamonha"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginEnd="10dp"
-                        android:text="Jacó"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginEnd="10dp"
-                        android:text="Vicios"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginEnd="10dp"
-                        android:text="Olhaso"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginEnd="10dp"
-                        android:text="Ultimo Item"/>
-                </LinearLayout>
-
-<!--                <androidx.constraintlayout.widget.ConstraintLayout-->
-<!--                    android:id="@+id/restaurant"-->
-<!--                    android:layout_width="0dp"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_weight="1">-->
-
-<!--                    <ImageView-->
-<!--                        android:id="@+id/restaurantIcon"-->
-<!--                        android:layout_width="35dp"-->
-<!--                        android:layout_height="35dp"-->
-<!--                        android:src="@drawable/ic_action_restaurant"-->
-<!--                        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--                        app:layout_constraintEnd_toEndOf="parent"-->
-<!--                        app:layout_constraintStart_toStartOf="parent"-->
-<!--                        app:layout_constraintTop_toTopOf="parent"-->
-<!--                        app:layout_constraintVertical_bias="0.0" />-->
-
-<!--                    <TextView-->
-<!--                        android:id="@+id/restaurantText"-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:text="Restaurantes"-->
-<!--                        android:textColor="@color/black"-->
-<!--                        android:textSize="10sp"-->
-<!--                        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--                        app:layout_constraintEnd_toEndOf="parent"-->
-<!--                        app:layout_constraintStart_toStartOf="parent"-->
-<!--                        app:layout_constraintTop_toBottomOf="@+id/restaurantIcon"-->
-<!--                        app:layout_constraintVertical_bias="0.0" />-->
-
-
-<!--                </androidx.constraintlayout.widget.ConstraintLayout>-->
-
-<!--                <androidx.constraintlayout.widget.ConstraintLayout-->
-<!--                    android:id="@+id/coupon"-->
-<!--                    android:layout_width="0dp"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_weight="1">-->
-
-<!--                    <ImageView-->
-<!--                        android:id="@+id/couponIcon"-->
-<!--                        android:layout_width="35dp"-->
-<!--                        android:layout_height="35dp"-->
-<!--                        android:src="@drawable/ic_action_ticket"-->
-<!--                        android:textColor="@color/black"-->
-<!--                        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--                        app:layout_constraintEnd_toEndOf="parent"-->
-<!--                        app:layout_constraintStart_toStartOf="parent"-->
-<!--                        app:layout_constraintTop_toTopOf="parent"-->
-<!--                        app:layout_constraintVertical_bias="0.0" />-->
-
-<!--                    <TextView-->
-<!--                        android:id="@+id/couponText"-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:text="Cupons"-->
-<!--                        android:textColor="@color/black"-->
-<!--                        android:textSize="10sp"-->
-<!--                        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--                        app:layout_constraintEnd_toEndOf="parent"-->
-<!--                        app:layout_constraintStart_toStartOf="parent"-->
-<!--                        app:layout_constraintTop_toBottomOf="@+id/couponIcon"-->
-<!--                        app:layout_constraintVertical_bias="0.0" />-->
-
-
-<!--                </androidx.constraintlayout.widget.ConstraintLayout>-->
-
-<!--                <androidx.constraintlayout.widget.ConstraintLayout-->
-<!--                    android:id="@+id/qrCode"-->
-<!--                    android:layout_width="0dp"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_weight="1">-->
-
-<!--                    <ImageView-->
-<!--                        android:id="@+id/qrCodeIcon"-->
-<!--                        android:layout_width="35dp"-->
-<!--                        android:layout_height="35dp"-->
-<!--                        android:src="@drawable/ic_action_qr_code"-->
-<!--                        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--                        app:layout_constraintEnd_toEndOf="parent"-->
-<!--                        app:layout_constraintStart_toStartOf="parent"-->
-<!--                        app:layout_constraintTop_toTopOf="parent"-->
-<!--                        app:layout_constraintVertical_bias="0.0" />-->
-
-<!--                    <TextView-->
-<!--                        android:id="@+id/qrCodeText"-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:text="Ler Cupom"-->
-<!--                        android:textColor="@color/black"-->
-<!--                        android:textSize="10sp"-->
-<!--                        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--                        app:layout_constraintEnd_toEndOf="parent"-->
-<!--                        app:layout_constraintStart_toStartOf="parent"-->
-<!--                        app:layout_constraintTop_toBottomOf="@+id/qrCodeIcon"-->
-<!--                        app:layout_constraintVertical_bias="0.0" />-->
-
-
-<!--                </androidx.constraintlayout.widget.ConstraintLayout>-->
+                    android:orientation="horizontal"/>
 
             </HorizontalScrollView>
 
@@ -271,10 +109,11 @@
                 app:layout_constraintVertical_bias="0.2" />
 
             <TextView
+                android:id="@+id/restaurantAddress"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/giuconda_regular"
-                android:text="R. Periquito, 123"
+                android:text="Endereço"
                 android:textColor="@color/gray_form"
                 android:textSize="14sp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -373,7 +212,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/giuconda_bold"
-                android:text="4,3"
+                android:text="0,0"
                 android:textColor="@color/yellow_star"
                 android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -402,7 +241,7 @@
                 android:id="@+id/list"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical" />
+                android:orientation="vertical"/>
 
         </ScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>
