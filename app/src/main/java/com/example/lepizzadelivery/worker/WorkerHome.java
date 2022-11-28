@@ -107,7 +107,7 @@ public class WorkerHome extends AppCompatActivity {
              }
 
              @Override
-             public void onCancelled(@NonNull DatabaseError error) { }
+             public void onCancelled(@NonNull DatabaseError error) {  }
          });
     }
 

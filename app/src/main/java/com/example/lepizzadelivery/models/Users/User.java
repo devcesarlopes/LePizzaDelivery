@@ -24,25 +24,7 @@ public abstract class User implements Serializable {
 
     public User(){}
 
-    public User(String email){
-        this.email = email;
-    }
-
-//    public User(String name, String email, String password, String phone){
-//        this.name = name;
-//        this.email = email;
-//        this.password = password;
-//        this.phone = phone;
-//        this.type = UserTypes.CLIENT.toString();
-//    }
-
-//    public User(String email, String password, String restaurantUid){
-//        this.email = email;
-//        this.password = password;
-//        this.restaurantUid = restaurantUid;
-//        this.type = UserTypes.WORKER.toString();
-//    }
-
+    public User(String email){ this.email = email; }
     public String getUid() {return uid;}
     public String getName() {return name;}
     public String getEmail() {return email;}
