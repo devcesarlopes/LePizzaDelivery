@@ -81,7 +81,7 @@ public class Order implements Serializable, DefaultMenu {
         return true;
     }
 
-    private Double getTotalPriceDouble() {
+    public Double getTotalPriceDouble() {
         return orderFoodList.
                 entrySet().
                 stream().

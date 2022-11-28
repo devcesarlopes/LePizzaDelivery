@@ -334,6 +334,25 @@ public class Api {
                     Toast.makeText(activity, "Falha ao registrar o Pedido no banco de dados.", Toast.LENGTH_SHORT).show();
                     action.reject();
                 });
+        }))
+        .then(new Promise((action, data) -> {
+            if(orderStatus.equals(Order.OrderStatus.CLIENT_ORDERED.name())){
+                action.resolve();
+                return;
+            }
+            reference = FirebaseDatabase
+                    .getInstance()
+                    .getReference()
+                    .child("restaurants")
+                    .child(order.getRestaurant().getUid());
+            reference.updateChildren(order.getRestaurant().getOrderMap(order))
+                    .addOnSuccessListener(unused -> {
+                        action.resolve();
+                    })
+                    .addOnFailureListener(e -> {
+                        Toast.makeText(activity, "Falha ao registrar o Pedido no banco de dados.", Toast.LENGTH_SHORT).show();
+                        action.reject();
+                    });
         })).start();
     }
 }

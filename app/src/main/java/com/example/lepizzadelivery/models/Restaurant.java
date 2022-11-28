@@ -238,6 +238,13 @@ public class Restaurant implements Serializable {
             put("lng", address.getLng());
         }};
     }
+
+    public Map<String, Object> getOrderMap(Order order){
+        return new HashMap<String, Object>(){{
+            put("deliveries", deliveries + 1);
+            put("income", income + order.getTotalPriceDouble());
+        }};
+    }
     public int getHeight() {return height;}
     public void setHeight(int height) {
         this.height = height;
