@@ -16,8 +16,19 @@ $ git clone https://github.com/julioclopes32/LePizzaDelivery.git
 ```
 
 2. No Android Studio abra a pasta do projeto.
-3. Escolha um dispositivo para emular o android e executar o aplicativo.
+
+ ![](https://i.imgur.com/KbfbpbK.png)
+
+3. Escolha um dispositivo para emular o android e executar o aplicativo (caso não tenha nenhum: Device Manager -> Create device).
+
+![](https://i.imgur.com/EhcoIRK.png)
+
+
 4. Run app :rocket: 
+
+![](https://i.imgur.com/ms1jTrU.png)
+
+
 
 Vídeo detalhado mostrando como executar a aplicação:
 
@@ -32,7 +43,16 @@ O aplicativo pode ser utilizado em três contextos diferentes:
 O administrador é responsável por:
 
 * Gerenciar franquias: ver franquias cadastradas, suas respectivias avaliações e receitas além de cadastrar novas.
+
+![](https://i.imgur.com/Uclntew.png)
+
+![](https://i.imgur.com/ZP2tNR6.png)
+
+
 * Cadastrar funcionários: o funcionário é um tipo de usuário do aplicativo. Cadastrado pelo administrador, tem dados como email e senha e são vinculados a uma determinada franquia.
+
+![](https://i.imgur.com/uTz196p.png)
+
 * :construction: [em contrução] Cadastrar cupons: o administrador pode cadastrar novos cupons para serem disponibilizados através de um qr code para os clientes.
 
 #### Funcionário
@@ -41,13 +61,29 @@ O funcionário é responável por:
 
 * Gerenciar o fluxo de pedidos da fraquia a qual foi vinculado, podendo aceitar pedidos e confirmar a entrega.
 
+![](https://i.imgur.com/nWEjb35.png)
+
+
 #### Cliente
 
 O cliente pode:
 
 * Acessar as informações do seu perfil
+
+![](https://i.imgur.com/wyxi2XL.png)
+
+
 * Ver pedidos em andamento, ou seja, pedidos que foram aceitos pela franquia mas ainda não foram entregues.
+
+![](https://i.imgur.com/BiblWSy.png)
+
+
 * Escolher uma determinada franquia e realizar um pedido.
+
+![](https://i.imgur.com/AfntGHw.png)
+
+![](https://i.imgur.com/kbCUHKd.png)
+
 * :construction: [em contrução] Ler um qr code para obter um cupon de desconto.
 
 Vídeo detalhado explicando o funcionamento da aplicação:
