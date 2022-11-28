@@ -38,7 +38,7 @@ public class GoogleMapsApi extends AppCompatActivity {
         autocompleteFragment.setTypeFilter(TypeFilter.ADDRESS);
         autocompleteFragment.setCountry("BR");
         autocompleteFragment.setPlaceFields(Arrays.asList(Place.Field.NAME, Place.Field.LAT_LNG));
-
+        autocompleteFragment.setText("Clique e escolha o Endereço");
         autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
             @Override
             public void onPlaceSelected(@NonNull Place place) {
