@@ -1,4 +1,4 @@
-package com.example.lepizzadelivery;
+package com.example.lepizzadelivery.controllers;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 
+import com.example.lepizzadelivery.R;
+import com.example.lepizzadelivery.Router;
 import com.example.lepizzadelivery.models.Users.User;
 import com.example.lepizzadelivery.session.SessionManagement;
 import com.example.lepizzadelivery.session.SharedPrefsDatabase;

@@ -1,4 +1,4 @@
-package com.example.lepizzadelivery;
+package com.example.lepizzadelivery.controllers;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -17,9 +17,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import com.example.lepizzadelivery.Api;
+import com.example.lepizzadelivery.DoubleClick;
+import com.example.lepizzadelivery.R;
+import com.example.lepizzadelivery.Router;
+import com.example.lepizzadelivery.TouchListener;
+import com.example.lepizzadelivery.controllers.Login;
 import com.example.lepizzadelivery.models.Address;
 import com.example.lepizzadelivery.models.Users.Client;
-import com.example.lepizzadelivery.models.Users.User;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -33,7 +38,7 @@ public class Register extends AppCompatActivity {
     TextView login;
     EditText name, email, phone, password;
     DoubleClick doubleClick = new DoubleClick();
-    Api Api = new Api();
+    com.example.lepizzadelivery.Api Api = new Api();
     Client user;
 
     @RequiresApi(api = Build.VERSION_CODES.S)

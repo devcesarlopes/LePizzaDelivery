@@ -28,16 +28,13 @@
             android:name=".admin.AdminHome"
             android:exported="true" />
         <activity
-            android:name=".Register"
-            android:exported="true" />
-        <activity
-            android:name=".ChooseRole"
+            android:name=".controllers.Register"
             android:exported="true" />
         <activity
             android:name=".client.ClientHome"
             android:exported="true" />
         <activity
-            android:name=".SplashScreen"
+            android:name=".controllers.SplashScreen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -46,7 +43,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Login"
+            android:name=".controllers.Login"
             android:exported="true" />
     </application>
 

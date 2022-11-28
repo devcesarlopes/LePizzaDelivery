@@ -7,14 +7,12 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.lepizzadelivery.Encoding;
 import com.example.lepizzadelivery.R;
 
 import java.text.DecimalFormat;
-import java.util.HashMap;
 import java.util.Objects;
 
-public class Food extends Encoding{
+public class Food{
 
     View view;
     LinearLayout lista;

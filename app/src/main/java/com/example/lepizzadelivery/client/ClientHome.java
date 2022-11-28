@@ -122,9 +122,6 @@ public class ClientHome extends AppCompatActivity {
         orderConstraint.setVisibility(View.GONE);
         bottomLayout.setVisibility(View.VISIBLE);
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-//        Bundle data = new Bundle();
-//        data.putSerializable("order", order);
-//        clientSearch.setArguments(data);
         fragmentTransaction.replace(R.id.activityFrame, clientSearch).commit();
     }
 

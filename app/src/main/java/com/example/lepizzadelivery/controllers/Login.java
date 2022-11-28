@@ -1,4 +1,4 @@
-package com.example.lepizzadelivery;
+package com.example.lepizzadelivery.controllers;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -11,7 +11,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
-import com.example.lepizzadelivery.models.Users.User;
+import com.example.lepizzadelivery.Api;
+import com.example.lepizzadelivery.DoubleClick;
+import com.example.lepizzadelivery.R;
+import com.example.lepizzadelivery.TouchListener;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -24,7 +27,7 @@ public class Login extends AppCompatActivity {
     TextView register;
     EditText email, password;
     DoubleClick doubleClick = new DoubleClick();
-    Api Api = new Api();
+    com.example.lepizzadelivery.Api Api = new Api();
 
     @SuppressLint("ClickableViewAccessibility")
     @Override

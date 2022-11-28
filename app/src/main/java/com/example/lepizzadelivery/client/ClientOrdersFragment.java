@@ -77,10 +77,17 @@ public class ClientOrdersFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         setViews();
         user = (Client) SharedPrefsDatabase.getUser(requireActivity());
-
+        list.removeAllViews();
         Api.getAcceptedOrders(user)
         .then((action, data) -> {
             List<Order> orders = (List<Order>) data;
+            if(orders.isEmpty()){
+                View v = LayoutInflater.from(requireActivity()).inflate(R.layout.menu_section_title, list, false);
+                TextView text = v.findViewById(R.id.text);
+                text.setText("Nenhum Pedido em Aberto Encontrado\nSe você acabou de Pedir, aguarde o Restaurante Aceitar!");
+                list.addView(v);
+                return;
+            }
             orders.forEach(order -> {
                 list.addView(order.generateView(requireActivity(), list));
             });

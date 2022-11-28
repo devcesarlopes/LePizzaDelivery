@@ -103,7 +103,6 @@ public class AdminBusinessFragment extends Fragment {
         Api.getRestaurants()
         .then(((action, data) -> {
             List<Restaurant> restaurants = (ArrayList<Restaurant>) data;
-            listaRestaurantes.clear();
             listaRestaurantes.addAll(restaurants);
             System.out.println(listaRestaurantes);
             openRestaurantList();
@@ -120,6 +119,15 @@ public class AdminBusinessFragment extends Fragment {
             restaurant.generateView(getActivity(), list, user);
             list.addView(restaurant.getRestaurantView());
         }
+        if(listaRestaurantes.isEmpty()){
+            View v = LayoutInflater.from(requireActivity()).inflate(R.layout.menu_section_title, list, false);
+            TextView text = v.findViewById(R.id.text);
+            text.setText("Nenhum Restaurante Encontrado");
+            list.addView(v);
+            return;
+        }
+        listaRestaurantes.clear();
+
         progressBar.setVisibility(View.GONE);
     }
 
