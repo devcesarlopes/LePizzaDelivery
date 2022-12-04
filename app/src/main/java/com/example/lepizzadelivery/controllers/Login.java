@@ -41,9 +41,6 @@ public class Login extends AppCompatActivity {
         email = findViewById(R.id.email);
         password = findViewById(R.id.password);
 
-        email.setText("julioclopes32@gmail.com");
-        password.setText("1234567");
-
         login.setOnTouchListener(TouchListener.getTouch("#FBD603"));
         register.setOnTouchListener(TouchListener.getTouch("#D7B807"));
 
